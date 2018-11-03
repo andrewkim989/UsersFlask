@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title>Edit user</title>
+        
+        <link rel = "stylesheet"
+        href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity = "sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin = "anonymous">
+        
+        <style>
+            #wrapper {
+                background-color: rgb(218, 195, 238);
+                height: 650px;
+            }
+            #user_display {
+                padding-left: 30px;
+                padding-top: 30px;
+            }
+            #links {
+                padding-right: 20px;
+                padding-left: 15px;
+            }
+            p {
+                font-size: 18px;
+            }
+            a {
+                display: inline-block;
+                vertical-align: top;
+                color: blue;
+                padding-right: 20px;
+                padding-left: 15px;
+                font-size: 20px;
+            }
+            h4 {
+                display: inline-block;
+                vertical-align: top;
+            }
+            #edit {
+                padding: 30px;
+            }
+            ul {
+                list-style-type: none;
+                color: rgb(228, 81, 81);
+            }
+        </style>    
+    </head>
+
+    <body>
+        <div id = "wrapper">
+            <div id = "edit">
+                <h1>Edit User {{user[0].id}}</h1>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class = flashes>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endwith %}
+                <form action = '/users/{{user[0].id}}' method = 'post'>
+                    First Name:
+                    <br>
+                    <input type = 'text' name = 'first_name' value = "{{user[0].first_name}}">
+                    <br>
+                    <br>
+                    Last Name:
+                    <br>
+                    <input type = 'text' name = 'last_name' value = "{{user[0].last_name}}">                        
+                    <br>
+                    <br>
+                    E-mail:
+                    <br>
+                    <input type = 'text' name = 'email' value = "{{user[0].email}}">
+                    <br>
+                    <br>
+                    <input type = 'submit' value = 'Update'>
+                </form>
+            </div>
+            <div id = "links">
+                <a href = "/users/{{user[0].id}}">Show</a><h4>|</h4>
+                <a href = "/users">Go Back</a>
+            </div>
+        </div>
+    </body>
+</html>

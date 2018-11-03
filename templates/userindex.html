@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>Users Index</title>
+
+        <link rel = "stylesheet"
+        href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity = "sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin = "anonymous">
+        
+        <style>
+            #wrapper {
+                background-color: rgb(231, 225, 210);
+                height: 650px;
+            }
+            h1 {
+                padding: 30px;
+            }
+            table {
+                border: 1px solid black;
+                border-collapse: collapse;
+                margin: 10px;
+                margin-left: 30px; 
+                margin-bottom: 30px;
+                
+            }
+            th {
+                text-align: left;
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 5px;
+                padding-right: 100px;
+                background-color: rgb(142, 181, 212);
+            }
+            tr td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 10px;
+                background-color: rgb(217, 224, 236);
+            }
+            #newuser {
+                padding-left: 40px;
+            }
+        </style>    
+    </head>
+
+    <body>
+        <div id = "wrapper">
+            <h1>Users</h1>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td><a href = "/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.created_at}}</td>
+                    <td><a href = "/users/{{user.id}}">Show</a>
+                        <a href = "/users/{{user.id}}/edit">Edit</a>
+                        <a href = "/users/{{user.id}}/delete">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div id = "newuser">
+                <a href = "/users/new">Add a new user</a>
+            </div>
+        </div>
+    </body>
+</html>
